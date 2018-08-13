@@ -30,7 +30,6 @@ before_script:
   - if [ -f "../cakephp/app/Plugin/CakeTheme/Config/asset_compress.local.ini" ]; then cp "../cakephp/app/Plugin/CakeTheme/Config/asset_compress.local.ini" "../cakephp/app/Config/asset_compress.ini"; fi
   - bash ../cakephp/app/vendor/tedivm/dovecottesting/SetupEnvironment.sh
   - sleep 15
-  - sudo netstat -tulpn
 
 script:
   - ../travis/script.sh
