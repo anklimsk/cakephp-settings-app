@@ -141,7 +141,7 @@ class SettingBaseTest extends AppCakeTestCase
             ],
             [
                 $this->_targetObject->alias => [
-                    'EmailSmtphost' => '127.0.0.1',
+                    'EmailSmtphost' => '0.0.0.0',
                     'EmailSmtpport' => '993',
                 ]
             ],
