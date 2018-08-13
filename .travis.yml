@@ -29,7 +29,7 @@ before_script:
   - if [ -f "../cakephp/app/Config/database.php" ]; then sed -i -r "/$test = array\(/a 'encoding' => 'utf8'," ../cakephp/app/Config/database.php; fi
   - if [ -f "../cakephp/app/Plugin/CakeTheme/Config/asset_compress.local.ini" ]; then cp "../cakephp/app/Plugin/CakeTheme/Config/asset_compress.local.ini" "../cakephp/app/Config/asset_compress.ini"; fi
   - bash ../cakephp/app/vendor/tedivm/dovecottesting/SetupEnvironment.sh
-  - sleep 10
+  - sleep 15
 
 script:
   - ../travis/script.sh
