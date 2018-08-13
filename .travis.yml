@@ -28,6 +28,7 @@ before_script:
   - if [ -f "../cakephp/app/Config/core.php" ]; then echo "Configure::write('Security.key', '9b8964f94127f5b843c67e8c89479e4f2cfac2b182c72dc0691cc384c438f9ca');" >> ../cakephp/app/Config/core.php; fi
   - if [ -f "../cakephp/app/Config/database.php" ]; then sed -i -r "/$test = array\(/a 'encoding' => 'utf8'," ../cakephp/app/Config/database.php; fi
   - if [ -f "../cakephp/app/Plugin/CakeTheme/Config/asset_compress.local.ini" ]; then cp "../cakephp/app/Plugin/CakeTheme/Config/asset_compress.local.ini" "../cakephp/app/Config/asset_compress.ini"; fi
+  - cat ~/.composer/vendor
   - ~/.composer/vendor/tedivm/dovecottesting/SetupEnvironment.sh
 
 script:
