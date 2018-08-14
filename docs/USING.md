@@ -26,10 +26,10 @@ public $components = [
 ],
 ```
 Where the `type` can be one of:
-* `string`;
-* `integer`;
-* `float`;
-* `boolean`.
+  * `string`;
+  * `integer`;
+  * `float`;
+  * `boolean`.
 - If necessary using multiple value of field, fill parameter `serialize`, e.g.:
 ```php
 'serialize' => [
