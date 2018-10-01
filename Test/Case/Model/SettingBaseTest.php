@@ -800,4 +800,40 @@ class SettingBaseTest extends AppCakeTestCase
         ];
         $this->assertData($expected, $result);
     }
+
+    /**
+     * testGetPluginName method
+     *
+     * @return void
+     */
+    public function testGetPluginName()
+    {
+        $result = $this->_targetObject->getPluginName();
+        $expected = 'cake_settings_app';
+        $this->assertData($expected, $result);
+    }
+
+    /**
+     * testGetControllerName method
+     *
+     * @return void
+     */
+    public function testGetControllerName()
+    {
+        $result = $this->_targetObject->getControllerName();
+        $expected = 'settings';
+        $this->assertData($expected, $result);
+    }
+
+    /**
+     * testGetGroupName method
+     *
+     * @return void
+     */
+    public function testGetGroupName()
+    {
+        $result = $this->_targetObject->getGroupName();
+        $expected = __d('cake_settings_app', 'Application settings');
+        $this->assertData($expected, $result);
+    }
 }

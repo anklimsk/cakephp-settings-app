@@ -52,6 +52,15 @@ class SettingBase extends CakeSettingsAppAppModel
     public $useTable = false;
 
     /**
+     * List of behaviors to load when the model object is initialized. Settings can be
+     * passed to behaviors by using the behavior name as index.
+     *
+     * @var array
+     * @link https://book.cakephp.org/2.0/en/models/behaviors.html#using-behaviors
+     */
+    public $actsAs = ['CakeTheme.BreadCrumb'];
+
+    /**
      * List of validation rules. It must be an array with the field name as key and using
      * as value one of the following possibilities
      *
@@ -1185,5 +1194,41 @@ class SettingBase extends CakeSettingsAppAppModel
         }
 
         return $oFile->close();
+    }
+
+    /**
+     * Return plugin name.
+     *
+     * @return string Return plugin name for breadcrumb.
+     */
+    public function getPluginName()
+    {
+        $pluginName = 'cake_settings_app';
+
+        return $pluginName;
+    }
+
+    /**
+     * Return controller name.
+     *
+     * @return string Return controller name for breadcrumb.
+     */
+    public function getControllerName()
+    {
+        $controllerName = 'settings';
+
+        return $controllerName;
+    }
+
+    /**
+     * Return name of group data.
+     *
+     * @return string Return name of group data
+     */
+    public function getGroupName()
+    {
+        $groupName = __d('cake_settings_app', 'Application settings');
+
+        return $groupName;
     }
 }

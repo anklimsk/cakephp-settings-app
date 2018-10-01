@@ -80,6 +80,17 @@ class SettingsControllerTest extends AppControllerTestCase
                 ]
             ],
             'pageHeader' => __d('cake_settings_app', 'Application settings'),
+            'breadCrumbs' => [
+                [
+                    __d('cake_settings_app', 'Application settings'),
+                    [
+                        'plugin' => 'cake_settings_app',
+                        'controller' => 'settings',
+                        'action' => 'index'
+                    ],
+                ],
+                __d('cake_settings_app', 'Settings')
+            ],
             'uiLcid2' => 'en',
             'uiLcid3' => 'eng'
         ];

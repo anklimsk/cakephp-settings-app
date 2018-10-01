@@ -175,6 +175,8 @@ class SettingsController extends CakeSettingsAppAppController
         $varsExt = $this->Setting->getVars();
 
         $pageHeader = __d('cake_settings_app', 'Application settings');
+        $breadCrumbs = $this->Setting->getBreadcrumbInfo();
+        $breadCrumbs[] = __d('cake_settings_app', 'Settings');
 
         $this->set(compact(
             'groupList',
@@ -187,7 +189,8 @@ class SettingsController extends CakeSettingsAppAppController
             'authGroups',
             'languages',
             'varsExt',
-            'pageHeader'
+            'pageHeader',
+            'breadCrumbs'
         ));
     }
 }
