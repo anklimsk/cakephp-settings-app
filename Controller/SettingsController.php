@@ -47,8 +47,7 @@ class SettingsController extends CakeSettingsAppAppController
      */
     public $uses = [
         'CakeSettingsApp.ConfigSettingsApp',
-        'CakeSettingsApp.Ldap',
-        'CakeTheme.ExtendQueuedTask'
+        'CakeSettingsApp.Ldap'
     ];
 
     /**
@@ -78,38 +77,9 @@ class SettingsController extends CakeSettingsAppAppController
      * @link http://book.cakephp.org/2.0/en/controllers.html#components-helpers-and-uses
      */
     public $helpers = [
-        'Time',
-        'Number',
         'CakeTheme.Filter',
         'CakeTheme.ViewExtension',
-        'AssetCompress.AssetCompress',
-    ];
-
-    /**
-     * Settings for component 'Paginator'
-     *
-     * @var array
-     */
-    public $paginate = [
-        'page' => 1,
-        'limit' => 20,
-        'maxLimit' => 250,
-        'fields' => [
-            'ExtendQueuedTask.id',
-            'ExtendQueuedTask.jobtype',
-            'ExtendQueuedTask.created',
-            'ExtendQueuedTask.fetched',
-            'ExtendQueuedTask.progress',
-            'ExtendQueuedTask.completed',
-            'ExtendQueuedTask.reference',
-            'ExtendQueuedTask.failed',
-            'ExtendQueuedTask.failure_message',
-            'ExtendQueuedTask.status',
-        ],
-        'order' => [
-            'ExtendQueuedTask.created' => 'desc',
-            'ExtendQueuedTask.fetched' => 'desc',
-        ]
+        'AssetCompress.AssetCompress'
     ];
 
     /**
@@ -128,23 +98,6 @@ class SettingsController extends CakeSettingsAppAppController
         }
 
         parent::__construct($request, $response);
-    }
-
-    /**
-     * Called before the controller action. You can use this method to configure and customize components
-     * or perform logic that needs to happen before each controller action.
-     *
-     * Actions:
-     *  - Configure components;
-     *
-     * @return void
-     * @link http://book.cakephp.org/2.0/en/controllers.html#request-life-cycle-callbacks
-     */
-    public function beforeFilter()
-    {
-        $this->Security->unlockedActions = ['delete'];
-
-        parent::beforeFilter();
     }
 
     /**
@@ -236,111 +189,5 @@ class SettingsController extends CakeSettingsAppAppController
             'varsExt',
             'pageHeader'
         ));
-    }
-
-    /**
-     * Action `queue`. Used to view queue of task
-     *
-     * @return void
-     */
-    public function queue()
-    {
-        if (!CakePlugin::loaded('Queue')) {
-            throw new MissingPluginException(['plugin' => 'Queue']);
-        }
-
-        $groupActions = [
-            'group-data-del' => __d('cake_settings_app', 'Delete selected tasks')
-        ];
-        $conditions = $this->Filter->getFilterConditions('CakeTheme');
-        $usePost = true;
-        if ($this->request->is('post')) {
-            $groupAction = $this->Filter->getGroupAction(array_keys($groupActions));
-            $resultGroupProcess = $this->Setting->processGroupAction($groupAction, $conditions);
-            if ($resultGroupProcess !== null) {
-                if ($resultGroupProcess) {
-                    $conditions = null;
-                    $this->Flash->success(__d('cake_settings_app', 'Selected tasks has been deleted.'));
-                } else {
-                    $this->Flash->error(__d('cake_settings_app', 'Selected tasks could not be deleted. Please, try again.'));
-                }
-            }
-        } else {
-            if (!empty($conditions)) {
-                $usePost = false;
-            }
-        }
-        $this->Paginator->settings = $this->paginate;
-        $queue = $this->Paginator->paginate('ExtendQueuedTask', $conditions);
-        $taskStateList = $this->Setting->getListTaskState();
-        $stateData = [];
-        if ($usePost) {
-            $stateData = $this->Setting->getBarStateInfo();
-        }
-        $pageHeader = __d('cake_settings_app', 'Queue of tasks');
-        $headerMenuActions = [];
-        if (!empty($queue)) {
-            $headerMenuActions[] = [
-                'fas fa-trash-alt',
-                __d('cake_settings_app', 'Clear queue of tasks'),
-                ['controller' => 'settings', 'action' => 'clear', 'plugin' => 'cake_settings_app', 'prefix' => false],
-                [
-                    'title' => __d('cake_settings_app', 'Clear queue of tasks'),
-                    'action-type' => 'confirm-post',
-                    'data-confirm-msg' => __d('cake_settings_app', 'Are you sure you wish to clear queue of tasks?'),
-                ]
-            ];
-        }
-
-        $this->set(compact('queue', 'groupActions', 'taskStateList', 'stateData', 'usePost', 'pageHeader', 'headerMenuActions'));
-    }
-
-    /**
-     * Action `delete`. Used to delete task from queue
-     *
-     * @throws InternalErrorException if data of query is empty
-     * @return void
-     */
-    public function delete()
-    {
-        if (!CakePlugin::loaded('Queue')) {
-            throw new MissingPluginException(['plugin' => 'Queue']);
-        }
-
-        $this->request->allowMethod('post', 'delete');
-        $data = $this->request->query;
-        if (empty($data)) {
-            throw new InternalErrorException(__d('cake_settings_app', 'Invalid task'));
-        }
-
-        if ($this->ExtendQueuedTask->deleteTasks($data)) {
-            $this->Flash->success(__d('cake_settings_app', 'The task has been deleted.'));
-        } else {
-            $this->Flash->error(__d('cake_settings_app', 'The task could not be deleted. Please, try again.'));
-        }
-
-        return $this->redirect(['action' => 'queue']);
-    }
-
-    /**
-     * Action `clear`. Used to clear queue of tasks
-     *
-     * @return void
-     */
-    public function clear()
-    {
-        if (!CakePlugin::loaded('Queue')) {
-            throw new MissingPluginException(['plugin' => 'Queue']);
-        }
-
-        $this->request->allowMethod('post', 'delete');
-        $ds = $this->ExtendQueuedTask->getDataSource();
-        if ($ds->truncate($this->ExtendQueuedTask)) {
-            $this->Flash->success(__d('cake_settings_app', 'The task queue has been cleared.'));
-        } else {
-            $this->Flash->error(__d('cake_settings_app', 'The task queue could not be cleared. Please, try again.'));
-        }
-
-        return $this->redirect(['action' => 'queue']);
     }
 }

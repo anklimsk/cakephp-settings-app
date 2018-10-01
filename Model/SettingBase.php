@@ -1142,7 +1142,7 @@ class SettingBase extends CakeSettingsAppAppModel
             $stateName = Hash::get($taskStateList, $stateId);
             $class = Hash::get($taskClassList, $stateId);
             $amount = (int)Hash::get($dataItem, '0.amount');
-            $stateUrl = ['controller' => 'settings', 'action' => 'queue', 'plugin' => 'cake_settings_app',
+            $stateUrl = ['controller' => 'queues', 'action' => 'index', 'plugin' => 'cake_settings_app',
                 '?' => ['data[FilterData][0][' . $modelExtendQueuedTask->alias . '][status]' => $stateId]];
             $result[] = compact('stateName', 'stateId', 'amount', 'stateUrl', 'class');
         }

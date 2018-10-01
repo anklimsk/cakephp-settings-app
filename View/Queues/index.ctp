@@ -6,10 +6,8 @@
      * @package app.View.Settings
      */
 
-    $this->assign('title', __d('cake_settings_app', 'Queue of tasks'));
-
-    $this->Html->addCrumb(__d('cake_settings_app', 'Application settings'), ['controller' => 'settings', 'action' => 'index', 'plugin' => 'cake_settings_app']);
-    $this->Html->addCrumb(__d('cake_settings_app', 'Queue of tasks'));
+    $this->assign('title', $pageHeader);
+    $this->ViewExtension->addBreadCrumbs($breadCrumbs);
 ?>
 <div class="container-fluid" data-toggle="repeat" data-repeat-time="300">
 <?php

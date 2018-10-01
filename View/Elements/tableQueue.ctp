@@ -115,7 +115,7 @@ foreach ($queue as $queueItem) {
         $actions = $this->ViewExtension->buttonLink(
             'fas fa-trash-alt',
             'btn-danger',
-            ['controller' => 'settings', 'action' => 'delete', 'plugin' => 'cake_settings_app', '?' => $queueItem['ExtendQueuedTask']],
+            ['controller' => 'queues', 'action' => 'delete', 'plugin' => 'cake_settings_app', '?' => $queueItem['ExtendQueuedTask']],
             [
                 'title' => __d('cake_settings_app', 'Delete task'),
                 'action-type' => 'confirm-post',

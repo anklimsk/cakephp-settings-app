@@ -774,8 +774,8 @@ class SettingBaseTest extends AppCakeTestCase
                 'stateId' => 'COMPLETED',
                 'amount' => 1,
                 'stateUrl' => [
-                    'controller' => 'settings',
-                    'action' => 'queue',
+                    'controller' => 'queues',
+                    'action' => 'index',
                     'plugin' => 'cake_settings_app',
                     '?' => [
                         'data[FilterData][0][ExtendQueuedTask][status]' => 'COMPLETED',
@@ -788,8 +788,8 @@ class SettingBaseTest extends AppCakeTestCase
                 'stateId' => 'NOT_STARTED',
                 'amount' => 1,
                 'stateUrl' => [
-                    'controller' => 'settings',
-                    'action' => 'queue',
+                    'controller' => 'queues',
+                    'action' => 'index',
                     'plugin' => 'cake_settings_app',
                     '?' => [
                         'data[FilterData][0][ExtendQueuedTask][status]' => 'NOT_STARTED',

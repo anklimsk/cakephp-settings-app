@@ -12,8 +12,16 @@
         ['controller' => 'settings', 'action' => 'index', 'plugin' => 'cake_settings_app']
     );
     Router::connect(
+        '/queues',
+        ['controller' => 'queues', 'action' => 'index', 'plugin' => 'cake_settings_app']
+    );
+    Router::connect(
         '/settings/:action/*',
         ['controller' => 'settings', 'plugin' => 'cake_settings_app']
+    );
+    Router::connect(
+        '/queues/:action/*',
+        ['controller' => 'queues', 'plugin' => 'cake_settings_app']
     );
 
     Router::parseExtensions();
