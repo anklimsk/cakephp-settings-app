@@ -12,9 +12,9 @@
     "require": {
         "php": ">=5.4",
         "composer/installers": "^1.5.0",
-        "anklimsk/cakephp-config-plugin": "*",
-        "anklimsk/cakephp-extended-test": "*",
-        "anklimsk/cakephp2-theme": "*"
+        "anklimsk/cakephp-config-plugin": "^0.1.3",
+        "anklimsk/cakephp-extended-test": "^0.8.1",
+        "anklimsk/cakephp2-theme": "^0.7.8"
     },
     "support": {
         "source": "https://github.com/anklimsk/cakephp-settings-app"
