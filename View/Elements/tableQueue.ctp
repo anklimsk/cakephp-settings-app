@@ -31,37 +31,37 @@ if (!isset($usePost)) {
 			<thead>
 <?php
 	$formInputs = [
-		'ExtendQueuedTask.id' => [
+		'QueueInfo.id' => [
 			'label' => 'ID',
 			'disabled' => true,
 			'class-header' => 'action',
 			'not-use-input' => true
 		],
-		'ExtendQueuedTask.jobtype' => [
+		'QueueInfo.jobtype' => [
 			'label' => __d('cake_settings_app', 'Job type'),
 		],
-		'ExtendQueuedTask.created' => [
+		'QueueInfo.created' => [
 			'label' => __d('cake_settings_app', 'Created'),
 		],
-		'ExtendQueuedTask.fetched' => [
+		'QueueInfo.fetched' => [
 			'label' => __d('cake_settings_app', 'Fetched'),
 		],
-		'ExtendQueuedTask.completed' => [
+		'QueueInfo.completed' => [
 			'label' => __d('cake_settings_app', 'Completed'),
 		],
-		'ExtendQueuedTask.progress' => [
+		'QueueInfo.progress' => [
 			'label' => __d('cake_settings_app', 'Progress'),
 		],
-		'ExtendQueuedTask.reference' => [
+		'QueueInfo.reference' => [
 			'label' => __d('cake_settings_app', 'Reference'),
 		],
-		'ExtendQueuedTask.failed' => [
+		'QueueInfo.failed' => [
 			'label' => __d('cake_settings_app', 'Failed num.'),
 		],
-		'ExtendQueuedTask.failure_message' => [
+		'QueueInfo.failure_message' => [
 			'label' => __d('cake_settings_app', 'Failure mess.'),
 		],
-		'ExtendQueuedTask.status' => [
+		'QueueInfo.status' => [
 			'label' => __d('cake_settings_app', 'Status'),
 			'type' => 'select',
 			'options' => $taskStateList,
@@ -85,7 +85,7 @@ foreach ($queue as $queueItem) {
 	$tableRow = [];
 	$attrRow = [];
 
-	switch ($queueItem['ExtendQueuedTask']['status']) {
+	switch ($queueItem['QueueInfo']['status']) {
 		case 'NOT_READY':
 			$attrRow['class'] = 'warning';
 			break;
@@ -105,40 +105,40 @@ foreach ($queue as $queueItem) {
 		default:
 			$attrRow['class'] = '';
 	}
-	$stateText = $queueItem['ExtendQueuedTask']['status'];
+	$stateText = $queueItem['QueueInfo']['status'];
 	if (isset($taskStateList[$stateText])) {
 		$stateText = $taskStateList[$stateText];
 	}
 
 	$actions = __d('cake_settings_app', '&lt;None&gt;');
-	if ($queueItem['ExtendQueuedTask']['status'] !== 'IN_PROGRESS') {
+	if ($queueItem['QueueInfo']['status'] !== 'IN_PROGRESS') {
 		$actions = $this->ViewExtension->buttonLink(
 			'fas fa-trash-alt',
 			'btn-danger',
-			['controller' => 'queues', 'action' => 'delete', 'plugin' => 'cake_settings_app', '?' => $queueItem['ExtendQueuedTask']],
+			['controller' => 'queues', 'action' => 'delete', 'plugin' => 'cake_settings_app', '?' => $queueItem['QueueInfo']],
 			[
 				'title' => __d('cake_settings_app', 'Delete task'),
 				'action-type' => 'confirm-post',
 				'data-confirm-msg' => __d(
 					'cake_settings_app',
 					'Are you sure you wish to delete task \'%s\' created %s?',
-					h($queueItem['ExtendQueuedTask']['jobtype']),
-					$this->Time->i18nFormat($queueItem['ExtendQueuedTask']['created'], '%x %X')
+					h($queueItem['QueueInfo']['jobtype']),
+					$this->Time->i18nFormat($queueItem['QueueInfo']['created'], '%x %X')
 				),
 			]
 		);
 	}
 
-	$tableRow[] = [$this->Filter->createFilterRowCheckbox('ExtendQueuedTask.id', $queueItem['ExtendQueuedTask']['id']),
+	$tableRow[] = [$this->Filter->createFilterRowCheckbox('QueueInfo.id', $queueItem['QueueInfo']['id']),
 		['class' => 'action text-center']];
-	$tableRow[] = h($queueItem['ExtendQueuedTask']['jobtype']);
-	$tableRow[] = $this->Time->i18nFormat($queueItem['ExtendQueuedTask']['created'], '%x %X');
-	$tableRow[] = (!is_null($queueItem['ExtendQueuedTask']['fetched']) ? $this->Time->i18nFormat($queueItem['ExtendQueuedTask']['fetched'], '%x %X') : __d('cake_settings_app', '&lt;None&gt;'));
-	$tableRow[] = (!is_null($queueItem['ExtendQueuedTask']['completed']) ? $this->Time->i18nFormat($queueItem['ExtendQueuedTask']['completed'], '%x %X') : __d('cake_settings_app', '&lt;None&gt;'));
-	$tableRow[] = (!is_null($queueItem['ExtendQueuedTask']['progress']) ? ($queueItem['ExtendQueuedTask']['progress'] * 100) . ' %' : __d('cake_settings_app', '&lt;None&gt;'));
-	$tableRow[] = (!is_null($queueItem['ExtendQueuedTask']['reference']) ? h($queueItem['ExtendQueuedTask']['reference']) : __d('cake_settings_app', '&lt;None&gt;'));
-	$tableRow[] = $this->Number->format($queueItem['ExtendQueuedTask']['failed']);
-	$tableRow[] = (!is_null($queueItem['ExtendQueuedTask']['failure_message']) ? $this->ViewExtension->truncateText(nl2br($queueItem['ExtendQueuedTask']['failure_message']), 30) : __d('cake_settings_app', '&lt;None&gt;'));
+	$tableRow[] = h($queueItem['QueueInfo']['jobtype']);
+	$tableRow[] = $this->Time->i18nFormat($queueItem['QueueInfo']['created'], '%x %X');
+	$tableRow[] = (!is_null($queueItem['QueueInfo']['fetched']) ? $this->Time->i18nFormat($queueItem['QueueInfo']['fetched'], '%x %X') : __d('cake_settings_app', '&lt;None&gt;'));
+	$tableRow[] = (!is_null($queueItem['QueueInfo']['completed']) ? $this->Time->i18nFormat($queueItem['QueueInfo']['completed'], '%x %X') : __d('cake_settings_app', '&lt;None&gt;'));
+	$tableRow[] = (!is_null($queueItem['QueueInfo']['progress']) ? ($queueItem['QueueInfo']['progress'] * 100) . ' %' : __d('cake_settings_app', '&lt;None&gt;'));
+	$tableRow[] = (!is_null($queueItem['QueueInfo']['reference']) ? h($queueItem['QueueInfo']['reference']) : __d('cake_settings_app', '&lt;None&gt;'));
+	$tableRow[] = $this->Number->format($queueItem['QueueInfo']['failed']);
+	$tableRow[] = (!is_null($queueItem['QueueInfo']['failure_message']) ? $this->ViewExtension->truncateText(nl2br($queueItem['QueueInfo']['failure_message']), 30) : __d('cake_settings_app', '&lt;None&gt;'));
 	$tableRow[] = h($stateText);
 	$tableRow[] = [$actions, ['class' => 'action text-center']];
 

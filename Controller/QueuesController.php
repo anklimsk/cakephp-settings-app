@@ -32,7 +32,8 @@ class QueuesController extends CakeSettingsAppAppController {
  * @link http://book.cakephp.org/2.0/en/controllers.html#components-helpers-and-uses
  */
 	public $uses = [
-		'CakeTheme.ExtendQueuedTask'
+		'CakeSettingsApp.Setting',
+		'CakeSettingsApp.QueueInfo'
 	];
 
 /**
@@ -73,20 +74,20 @@ class QueuesController extends CakeSettingsAppAppController {
 		'limit' => 20,
 		'maxLimit' => 250,
 		'fields' => [
-			'ExtendQueuedTask.id',
-			'ExtendQueuedTask.jobtype',
-			'ExtendQueuedTask.created',
-			'ExtendQueuedTask.fetched',
-			'ExtendQueuedTask.progress',
-			'ExtendQueuedTask.completed',
-			'ExtendQueuedTask.reference',
-			'ExtendQueuedTask.failed',
-			'ExtendQueuedTask.failure_message',
-			'ExtendQueuedTask.status',
+			'QueueInfo.id',
+			'QueueInfo.jobtype',
+			'QueueInfo.created',
+			'QueueInfo.fetched',
+			'QueueInfo.progress',
+			'QueueInfo.completed',
+			'QueueInfo.reference',
+			'QueueInfo.failed',
+			'QueueInfo.failure_message',
+			'QueueInfo.status',
 		],
 		'order' => [
-			'ExtendQueuedTask.created' => 'desc',
-			'ExtendQueuedTask.fetched' => 'desc',
+			'QueueInfo.created' => 'desc',
+			'QueueInfo.fetched' => 'desc',
 		]
 	];
 
@@ -119,7 +120,7 @@ class QueuesController extends CakeSettingsAppAppController {
 		$usePost = true;
 		if ($this->request->is('post')) {
 			$groupAction = $this->Filter->getGroupAction(array_keys($groupActions));
-			$resultGroupProcess = $this->Setting->processGroupAction($groupAction, $conditions);
+			$resultGroupProcess = $this->QueueInfo->processGroupAction($groupAction, $conditions);
 			if ($resultGroupProcess !== null) {
 				if ($resultGroupProcess) {
 					$conditions = null;
@@ -134,11 +135,11 @@ class QueuesController extends CakeSettingsAppAppController {
 			}
 		}
 		$this->Paginator->settings = $this->paginate;
-		$queue = $this->Paginator->paginate('ExtendQueuedTask', $conditions);
-		$taskStateList = $this->Setting->getListTaskState();
+		$queue = $this->Paginator->paginate('QueueInfo', $conditions);
+		$taskStateList = $this->QueueInfo->getListTaskState();
 		$stateData = [];
 		if ($usePost) {
-			$stateData = $this->Setting->getBarStateInfo();
+			$stateData = $this->QueueInfo->getBarStateInfo();
 		}
 		$pageHeader = __d('cake_settings_app', 'Queue of tasks');
 		$headerMenuActions = [];
@@ -182,7 +183,7 @@ class QueuesController extends CakeSettingsAppAppController {
 			throw new InternalErrorException(__d('cake_settings_app', 'Invalid task'));
 		}
 
-		if ($this->ExtendQueuedTask->deleteTasks($data)) {
+		if ($this->QueueInfo->deleteTasks($data)) {
 			$this->Flash->success(__d('cake_settings_app', 'The task has been deleted.'));
 		} else {
 			$this->Flash->error(__d('cake_settings_app', 'The task could not be deleted. Please, try again.'));
@@ -199,8 +200,8 @@ class QueuesController extends CakeSettingsAppAppController {
  */
 	public function clear() {
 		$this->request->allowMethod('post', 'delete');
-		$ds = $this->ExtendQueuedTask->getDataSource();
-		if ($ds->truncate($this->ExtendQueuedTask)) {
+		$ds = $this->QueueInfo->getDataSource();
+		if ($ds->truncate($this->QueueInfo)) {
 			$this->Flash->success(__d('cake_settings_app', 'The task queue has been cleared.'));
 		} else {
 			$this->Flash->error(__d('cake_settings_app', 'The task queue could not be cleared. Please, try again.'));

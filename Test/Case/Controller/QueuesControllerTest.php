@@ -54,7 +54,7 @@ class QueuesControllerTest extends AppControllerTestCase {
 		$expected = [
 			'queue' => [
 				[
-					'ExtendQueuedTask' => [
+					'QueueInfo' => [
 						'id' => '2',
 						'jobtype' => 'Sync',
 						'created' => '2016-09-26 08:28:15',
@@ -68,7 +68,7 @@ class QueuesControllerTest extends AppControllerTestCase {
 					]
 				],
 				[
-					'ExtendQueuedTask' => [
+					'QueueInfo' => [
 						'id' => '1',
 						'jobtype' => 'Sync',
 						'created' => '2016-09-26 08:27:17',
@@ -103,7 +103,7 @@ class QueuesControllerTest extends AppControllerTestCase {
 						'action' => 'index',
 						'plugin' => 'cake_settings_app',
 						'?' => [
-							'data[FilterData][0][ExtendQueuedTask][status]' => 'COMPLETED',
+							'data[FilterData][0][QueueInfo][status]' => 'COMPLETED',
 						]
 					],
 					'class' => 'progress-bar-success'
@@ -117,7 +117,7 @@ class QueuesControllerTest extends AppControllerTestCase {
 						'action' => 'index',
 						'plugin' => 'cake_settings_app',
 						'?' => [
-							'data[FilterData][0][ExtendQueuedTask][status]' => 'NOT_STARTED',
+							'data[FilterData][0][QueueInfo][status]' => 'NOT_STARTED',
 						]
 					],
 					'class' => 'progress-bar-success progress-bar-striped',
@@ -172,7 +172,7 @@ class QueuesControllerTest extends AppControllerTestCase {
 				'data' => [
 					'FilterData' => [
 						[
-							'ExtendQueuedTask' => [
+							'QueueInfo' => [
 								'id' => [2]
 							]
 						]
@@ -184,7 +184,7 @@ class QueuesControllerTest extends AppControllerTestCase {
 		$expected = [
 			'queue' => [
 				[
-					'ExtendQueuedTask' => [
+					'QueueInfo' => [
 						'id' => '2',
 						'jobtype' => 'Sync',
 						'created' => '2016-09-26 08:28:15',
@@ -257,7 +257,7 @@ class QueuesControllerTest extends AppControllerTestCase {
 			'data' => [
 				'FilterData' => [
 					[
-						'ExtendQueuedTask' => [
+						'QueueInfo' => [
 							'id' => [2]
 						]
 					]
@@ -286,7 +286,7 @@ class QueuesControllerTest extends AppControllerTestCase {
 			'data' => [
 				'FilterData' => [
 					[
-						'ExtendQueuedTask' => [
+						'QueueInfo' => [
 							'id' => [2]
 						]
 					]
@@ -316,7 +316,7 @@ class QueuesControllerTest extends AppControllerTestCase {
 			'data' => [
 				'FilterData' => [
 					[
-						'ExtendQueuedTask' => [
+						'QueueInfo' => [
 							'id' => [2]
 						]
 					]
@@ -330,7 +330,7 @@ class QueuesControllerTest extends AppControllerTestCase {
 		$expected = [
 			'queue' => [
 				[
-					'ExtendQueuedTask' => [
+					'QueueInfo' => [
 						'id' => '1',
 						'jobtype' => 'Sync',
 						'created' => '2016-09-26 08:27:17',
@@ -365,7 +365,7 @@ class QueuesControllerTest extends AppControllerTestCase {
 						'action' => 'index',
 						'plugin' => 'cake_settings_app',
 						'?' => [
-							'data[FilterData][0][ExtendQueuedTask][status]' => 'COMPLETED',
+							'data[FilterData][0][QueueInfo][status]' => 'COMPLETED',
 						]
 					],
 					'class' => 'progress-bar-success'

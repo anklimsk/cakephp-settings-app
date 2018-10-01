@@ -25,7 +25,7 @@ class QueueClearCacheTask extends AppShell {
  */
 	public $uses = [
 		'Queue.QueuedTask',
-		'CakeTheme.ExtendQueuedTask',
+		'CakeSettingsApp.QueueInfo',
 	];
 
 /**
@@ -76,7 +76,7 @@ class QueueClearCacheTask extends AppShell {
 	public function run($data, $id = null) {
 		$this->hr();
 		$this->out(__d('cake_settings_app', 'CakePHP Queue clearing cache task.'));
-		$queueLength = $this->ExtendQueuedTask->getLengthQueue('ClearCache');
+		$queueLength = $this->QueueInfo->getLengthQueue('ClearCache');
 		if ($queueLength > 0) {
 			$this->out(__d('cake_settings_app', 'Found clearing cache task in queue: %d. Skipped.', $queueLength));
 
