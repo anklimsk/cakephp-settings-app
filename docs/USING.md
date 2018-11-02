@@ -57,7 +57,7 @@
 
 2. Defining rules for validate settings:
 
-   - Copy configuration file from `app/Plugin/CakeSettingsApp/Model/Setting.php.default` to `app/Model/Setting.php`
+   - Copy Model file from `app/Plugin/CakeSettingsApp/Model/Setting.php.default` to `app/Model/Setting.php`
    - Fill the validation rules, e.g.:
 
       ```php
@@ -94,6 +94,25 @@
           return $variables;
       }
       ```
+
+   - Fill the method `Setting::afterFind()` to modify any results returned by getConfig(), e.g.:
+
+      ```php
+      /**
+       * Called after each find operation. Can be used to modify any results returned by find().
+       * Return value should be the (modified) results.
+       *
+       * @param mixed $results The results of the find operation
+       * @param bool $primary Whether this model is being queried directly (vs. being queried as an association)
+       * @param string $key The name of the parameter to retrieve the configurations.
+       * @return mixed Result of the find operation
+       * @link https://book.cakephp.org/2.0/en/models/callback-methods.html#afterfind
+       */
+      public function afterFind($results, $primary = false, $key = null) {
+      }
+      ```
+
+   - Fill the methods `Setting::beforeSave()` and `Setting::afterSave()`, if necessary.
 
 3. Creating UI for settings:
    - Copy files of `View` element from `app/Plugin/CakeSettingsApp/View/Elements/formExtendSettingsLeft.ctp.default` and 
