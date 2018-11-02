@@ -974,7 +974,7 @@ class SettingBase extends CakeSettingsAppAppModel {
 			return $results;
 		}
 
-		$event = new CakeEvent('Model.afterFind', $this, [$results, true]);
+		$event = new CakeEvent('Model.afterFind', $this, [$results, true, $key]);
 		$event->modParams = 0;
 		$this->getEventManager()->dispatch($event);
 
