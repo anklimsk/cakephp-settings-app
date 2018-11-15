@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CakePHP Plugin CakeSettingsApp\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-11-01 15:12+0300\n"
+"PO-Revision-Date: 2018-11-15 19:08+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -62,7 +62,7 @@ msgstr "Неверное задание"
 #: Controller/QueuesController.php:187
 #: Test/Case/Controller/QueuesControllerTest.php:468
 msgid "The task has been deleted."
-msgstr "Задание было удалено."
+msgstr "Задание удалено."
 
 #: Controller/QueuesController.php:189
 #: Test/Case/Controller/QueuesControllerTest.php:443
@@ -72,7 +72,7 @@ msgstr "Задание не может быть удалено. Пожалуйс
 #: Controller/QueuesController.php:205
 #: Test/Case/Controller/QueuesControllerTest.php:501
 msgid "The task queue has been cleared."
-msgstr "Очередь задач была очищена."
+msgstr "Очередь задач очищена."
 
 #: Controller/QueuesController.php:207
 msgid "The task queue could not be cleared. Please, try again."
@@ -81,7 +81,7 @@ msgstr "Очередь задач не может быть очищена. По�
 #: Controller/SettingsController.php:131
 #: Test/Case/Controller/SettingsControllerTest.php:133
 msgid "Application settings has been saved."
-msgstr "Настройки приложения были сохранены."
+msgstr "Настройки приложения сохранены."
 
 #: Controller/SettingsController.php:133
 msgid "Reload the page to apply the settings."
