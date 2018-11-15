@@ -57,7 +57,7 @@
 
 2. Defining rules for validate settings:
 
-   - Copy Model file from `app/Plugin/CakeSettingsApp/Model/Setting.php.default` to `app/Model/Setting.php`
+   - Copy configuration file from `app/Plugin/CakeSettingsApp/Model/Setting.php.default` to `app/Model/Setting.php`
    - Fill the validation rules, e.g.:
 
       ```php
