@@ -67,7 +67,8 @@ class SettingsComponent extends Component {
 			$this->_controller->Session = $this->_controller->Components->load('Session');
 			$this->_controller->Session->initialize($this->_controller);
 		}
-		if ($this->_controller->RequestHandler->prefers('json')) {
+		if ($this->_controller->Auth->loggedIn() ||
+			$this->_controller->RequestHandler->prefers('json')) {
 			return;
 		}
 
@@ -85,21 +86,13 @@ class SettingsComponent extends Component {
 		$pluginName = $this->_controller->request->param('plugin');
 		$controllerName = $this->_controller->request->param('controller');
 		$actionName = $this->_controller->request->param('action');
-		if (($controllerName === 'users') && ($actionName === 'login')) {
-			return;
-		}
-		if (($pluginName === 'cake_settings_app') &&
-			($controllerName === 'settings') &&
-			($actionName === 'index')) {
-			if ($this->_controller->Auth->loggedIn()) {
-				$this->_controller->Auth->allow('index');
-				$this->_controller->Session->write('Settings.FirstLogon', true);
-			}
-
+		if (($pluginName !== 'cake_settings_app') ||
+			($controllerName !== 'settings') ||
+			($actionName !== 'index')) {
 			return;
 		}
 
-		$urlRedirect = ['controller' => 'settings', 'action' => 'index', 'plugin' => 'cake_settings_app'];
-		$this->_controller->redirect($urlRedirect);
+		$this->_controller->Auth->allow('index');
+		$this->_controller->Session->write('Settings.FirstLogon', true);
 	}
 }
