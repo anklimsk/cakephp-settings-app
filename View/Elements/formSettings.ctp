@@ -118,8 +118,8 @@ if ($configADsearch) {
 			'title' => __d('cake_settings_app', 'Company name for search employee on LDAP server'), 'type' => 'text',
 			'data-toggle' => 'tooltip'],
 		'Setting.SearchBase' => ['label' => __d('cake_settings_app', 'Search base') . ':',
-			'title' => __d('cake_settings_app', 'Distinguished name of the search base object for search employee on LDAP server (e.g. OU=Users,DC=fabrikam,DC=com)'), 'type' => 'autocomplete',
-			'local' => json_encode($containerList), 'min-length' => 1],
+			'title' => __d('cake_settings_app', 'Distinguished name of the search base object for search employee on LDAP server (e.g. CN=Users,DC=fabrikam,DC=com)'), 'type' => 'autocomplete',
+			'local' => $containerList, 'min-length' => 1],
 	]);
 }
 if ($configAcLimit) {
