@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CakePHP Plugin CakeSettingsApp\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-11-15 19:08+0300\n"
+"PO-Revision-Date: 2018-11-16 15:01+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -203,10 +203,10 @@ msgstr "База поиска"
 #: View/Elements/formSettings.ctp:121
 msgid ""
 "Distinguished name of the search base object for search employee on LDAP "
-"server (e.g. OU=Users,DC=fabrikam,DC=com)"
+"server (e.g. CN=Users,DC=fabrikam,DC=com)"
 msgstr ""
 "Уникальное имя объекта базы поиска для поиска сотрудника на сервере LDAP "
-"(например, OU=Users,DC=fabrikam,DC=com)"
+"(например, CN=Users,DC=fabrikam,DC=com)"
 
 #: View/Elements/formSettings.ctp:127
 msgid "Autocomplete"
@@ -218,7 +218,7 @@ msgstr "Ограничение автодополнения"
 
 #: View/Elements/formSettings.ctp:128
 msgid "Limit for autocomplete search query"
-msgstr "Предел для поискового запроса автозаполнения "
+msgstr "Предел для поискового запроса автозаполнения"
 
 #: View/Elements/formSettings.ctp:141
 msgid "Notification"
@@ -314,11 +314,11 @@ msgstr "Ссылок"
 
 #: View/Elements/tableQueue.ctp:59
 msgid "Failed num."
-msgstr "Кол. ошибок"
+msgstr "Кол. ошибок."
 
 #: View/Elements/tableQueue.ctp:62
 msgid "Failure mess."
-msgstr "Сообщ. ошибки"
+msgstr "Сообщ. ошибки."
 
 #: View/Elements/tableQueue.ctp:65
 msgid "Status"
