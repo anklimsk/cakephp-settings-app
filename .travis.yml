@@ -33,11 +33,8 @@ before_script:
   - travis_wait ../travis/before_script.sh
   - if [ -d "../cakephp/app/Vendor/PHPUnit" ]; then rm -rf ../cakephp/app/Vendor/PHPUnit; fi
   - pear config-set preferred_state snapshot && yes "" | pecl install mcrypt
-  - cd ../cakephp; pwd
-  - composer require "phpunit/phpunit=$PHPUNIT"
-  - ls -lha vendors/
-  - cd -
-  - echo "require_once 'vendors/autoload.php';" >> ../cakephp/app/Config/bootstrap.php
+  - cd ../cakephp; composer require "phpunit/phpunit=$PHPUNIT"; cd -
+  - echo "require_once ROOT . '/vendors/autoload.php';" >> ../cakephp/app/Config/bootstrap.php
   - if [ -f "../cakephp/app/Console/cake" ]; then ../cakephp/app/Console/cake CakeInstaller setsecurkey --yes --app $(cd ../cakephp/app; pwd); fi
   - if [ -f "../cakephp/app/Config/database.php" ]; then sed -i -r "/$test = array\(/a 'encoding' => 'utf8'," ../cakephp/app/Config/database.php; fi
   - if [ -f "../cakephp/app/Plugin/CakeTheme/Config/asset_compress.local.ini" ]; then cp "../cakephp/app/Plugin/CakeTheme/Config/asset_compress.local.ini" "../cakephp/app/Config/asset_compress.ini"; fi
