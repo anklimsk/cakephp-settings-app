@@ -43,7 +43,7 @@ before_script:
       cd -;
     fi
   - if [ -f "../cakephp/app/Console/cake" ]; then ../cakephp/app/Console/cake CakeInstaller setsecurkey --yes --app $(cd ../cakephp/app; pwd); fi
-  - if [ -f "../cakephp/app/Config/database.php" ]; then sed -i -r "/$test = array\(/a 'encoding' => 'utf8',"; fi
+  - if [ -f "../cakephp/app/Config/database.php" ]; then sed -i -r "/$test = array\(/a 'encoding' => 'utf8'," ../cakephp/app/Config/database.php; fi
   - if [ -f "../cakephp/app/Plugin/CakeTheme/Config/asset_compress.local.ini" ]; then cp "../cakephp/app/Plugin/CakeTheme/Config/asset_compress.local.ini" "../cakephp/app/Config/asset_compress.ini"; fi
 
 script:
