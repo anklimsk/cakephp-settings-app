@@ -32,7 +32,7 @@ matrix:
         - FOC_VALIDATE=1
 
 before_script:
-  - git clone -b dev https://github.com/anklimsk/travis.git --depth 1 ../travis
+  - git clone -b master https://github.com/anklimsk/travis.git --depth 1 ../travis
   - travis_wait ../travis/before_script.sh
   - if [ -f "../cakephp/app/Console/cake" ]; then ../cakephp/app/Console/cake CakeInstaller setsecurkey --yes --app $(cd ../cakephp/app; pwd); fi
   - if [ -f "../cakephp/app/Plugin/CakeTheme/Config/asset_compress.local.ini" ]; then cp "../cakephp/app/Plugin/CakeTheme/Config/asset_compress.local.ini" "../cakephp/app/Config/asset_compress.ini"; fi
