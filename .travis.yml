@@ -41,9 +41,7 @@ script:
   - ../travis/script.sh
 
 after_success:
-  - if [ -f "../cakephp/app/clover.xml" ]; then cp ../cakephp/app/clover.xml ../cakephp/app/Plugin/$PLUGIN_NAME; fi
-  - if [ -d "../cakephp/app/Plugin/$PLUGIN_NAME" ]; then cd ../cakephp/app/Plugin/$PLUGIN_NAME; fi
-  - if [ "$CODECOVERAGE" == '1' ]; then wget -O codecov.sh https://codecov.io/bash; bash codecov.sh; fi
+  - ../travis/after_success.sh
 
 notifications:
   email: false
