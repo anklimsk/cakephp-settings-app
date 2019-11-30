@@ -15,6 +15,9 @@ env:
     - CAKE_REF=2.x
     - PHPUNIT=5.7.19
 
+services:
+  - mysql
+
 matrix:
   include:
     - php: 7.3
